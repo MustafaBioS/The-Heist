@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1tiawg4s0e1k"]
+
+[ext_resource type="Script" uid="uid://deq5p755id42m" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://ca5878rxxms51" path="res://Scripts/camera.gd" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://cbtpirykxwuu6" path="res://Assets/old_flashlight_2.0.glb" id="2_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://dc6ormwhhm20q" path="res://Assets/john_wicks_glock_inspired_gun.glb" id="4_vgqql"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f60y1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0iea"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_v0iea")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_f60y1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_v0iea")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4709012, -0.43379062)
+script = ExtResource("2_6t5aa")
+
+[node name="Flashlight" parent="Camera" instance=ExtResource("2_cvnsp")]
+transform = Transform3D(0.000106211366, 0.00015098325, -0.0009828138, -3.7953487e-06, -0.000988336, -0.0001522417, -0.0009943366, 1.989992e-05, -0.000104399456, 0.545, -0.268, -0.422)
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera/Flashlight"]
+transform = Transform3D(106.21138, -3.7953641, -994.3361, 150.98328, -988.3358, 19.900042, -982.8141, -152.24176, -104.39952, -486.58942, -403.44705, 511.59988)
+light_energy = 6.0
+light_indirect_energy = 0.5
+light_volumetric_fog_energy = 8.0
+shadow_enabled = true
+shadow_bias = 0.05
+spot_range = 35.0
+spot_attenuation = 0.3
+spot_angle = 25.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1.0000001, 0, 1.0000001, -4.3711392e-08, 0, 0, -0.16293615)
+
+[node name="Pistol" parent="Camera" instance=ExtResource("4_vgqql")]
+transform = Transform3D(-0.12, 0, -1.0490733e-08, 0, 0.12, 0, 1.0490733e-08, 0, -0.12, 0.378, -0.489, -0.518)
