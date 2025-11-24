@@ -1,9 +1,12 @@
 extends CharacterBody3D
-@onready var pick = $"../ColorRect"
+@onready var weapon = $"../Weapon"
 @onready var camera = $Camera
 @onready var pistol = $Camera/Pistol
 @onready var flashlight = $Camera/Flashlight
 @onready var tablegun = $"../Pistol"
+@onready var laptop = $Laptop
+@onready var laptopPick = $"../LaptopPick"
+@onready var laptopCase = $"../Laptop"
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 6.0
@@ -16,16 +19,29 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pistol.visible = false
 	flashlight.visible = true
+	laptop.visible = false
 	
 func _process(float) -> void:
 	if Input.is_action_just_pressed("esc"):
 		get_tree().quit()
-	if pick.visible == true:
+		
+	if weapon.visible == true:
 		if Input.is_action_just_pressed("e"):
 			pistol.visible = true
 			flashlight.visible = false
-			pick.visible = false
+			weapon.visible = false
 			tablegun.visible = false
+	
+	elif laptopPick.visible == true:
+		if Input.is_action_just_pressed("e"):
+			pistol.visible = false
+			flashlight.visible = false
+			weapon.visible = false
+			laptopPick.visible = false
+			laptop.visible = true
+			tablegun.visible = false
+			laptopCase.visible = false
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

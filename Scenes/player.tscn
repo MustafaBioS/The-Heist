@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1tiawg4s0e1k"]
+[gd_scene load_steps=10 format=3 uid="uid://c1tiawg4s0e1k"]
 
 [ext_resource type="Script" uid="uid://deq5p755id42m" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://ca5878rxxms51" path="res://Scripts/camera.gd" id="2_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://cbtpirykxwuu6" path="res://Assets/old_flashlight_2.0.glb" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://dc6ormwhhm20q" path="res://Assets/john_wicks_glock_inspired_gun.glb" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://r573wm0rfj40" path="res://Assets/Laptop 16/Laptop/Texture.png" id="5_x3wgy"]
+[ext_resource type="ArrayMesh" uid="uid://8womthverr1v" path="res://Assets/Laptop 16/Laptop/Laptop.obj" id="6_3smsa"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f60y1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v0iea"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8erm5"]
+albedo_texture = ExtResource("5_x3wgy")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_v0iea")
@@ -42,3 +47,8 @@ transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1.0000001, 0, 1.0000001, -4
 
 [node name="Pistol" parent="Camera" instance=ExtResource("4_vgqql")]
 transform = Transform3D(-0.12, 0, -1.0490733e-08, 0, 0.12, 0, 1.0490733e-08, 0, -0.12, 0.378, -0.489, -0.518)
+
+[node name="Laptop" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.30000004, 0, 0, 0, 0.29535097, -0.052610017, 0, 0.052610017, 0.29535097, 0.012224674, -1.1649877, -1.9027213)
+material_override = SubResource("StandardMaterial3D_8erm5")
+mesh = ExtResource("6_3smsa")

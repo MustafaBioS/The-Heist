@@ -1,8 +1,11 @@
 ~ start
 set State.in_dialouge = true
+set State.firstdial = true
+
 You: Siege... huh...
-You: 10 weeks to get a framework?!
+You: 10 weeks to get a Framework Laptop?!
 You: No thank you... I'll just steal one from the Framework Museum.
+
 set State.in_dialogue = false
 set State.firstdial = true
 => END
